@@ -23,7 +23,7 @@ This guide will help you set up boot verification on a Lenovo T480 using TPM PCR
 - Opens a dom0 terminal and shows the MOTD if the user is in GUI mode.
 - Shows the MOTD if the user is using a headless-only setup.
 
-#### Prerequisites
+### Prerequisites
 
 To use this guide and script, you need a Lenovo T480 with TPM enabled and properly configured in the BIOS/UEFI settings. To enable and configure TPM on your Lenovo T480, follow these steps:
    
@@ -35,7 +35,7 @@ To use this guide and script, you need a Lenovo T480 with TPM enabled and proper
 - Set the TPM Clear option to Disabled.
 - Press F10 to save the changes and exit the BIOS/UEFI settings. Your system will restart and apply the changes.
 
-#### Implement 
+### Implement 
 
 Install the tpm2-tss library and the tpm2-tools package to interact with the TPM in Qubes OS:
 ```
@@ -91,7 +91,7 @@ Exec=/path/to/boot_verification.sh
 ```
 For headless users, add the script to.bashrc or .bash_profile file to display the MOTD at login: `/path/to/boot_verification.sh`
 
-#### Usage
+### Usage
 
 After completing the setup, the boot verification script will run every time you boot your T480 and log in to Qubes OS. The script will compare the current PCR value to the known good value to verify the boot process.
 
@@ -99,7 +99,7 @@ If the boot process is unchanged, the following will occur: GUI users will see a
 
 If the boot process has changed, the following will happen: GUI users will see a bubble notification that reads "Boot process has changed!" Both GUI and headless users will see the MOTD "Boot process has changed!" when they log in to the shell.
 
-#### How to update the known good PCR value
+### How to update the known good PCR value
 
 When you make legitimate changes to your boot process, such as updating the BIOS or changing the boot order, you will need to update the known good PCR value to avoid false alarms.
 
@@ -109,7 +109,7 @@ Verify the new PCR value to ensure that it reflects the expected changes. If the
 
 Now, the boot verification script will use the updated known good PCR value for future boot process verifications.
 
-#### Troubleshooting
+### Troubleshooting
 
 If you encounter issues with the boot verification setup, try the following troubleshooting steps:
 

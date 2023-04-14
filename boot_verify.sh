@@ -67,3 +67,6 @@ echo "~/boot_verify.sh" >> ~/.bashrc
 echo "Storing the known good PCR value..."
 mkdir -p ~/.boot_verif
 sudo tpm2_pcrread sha256:0 > ~/.boot_verif/good_pcr_value
+
+echo "Boot veification setup completed!"
+echo "Reboot for changes to take effect."

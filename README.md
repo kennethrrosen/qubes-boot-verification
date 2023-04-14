@@ -139,3 +139,16 @@ qvm-run --pass-io <Disposable_VM_name> 'cat /path/to/boot_verify.sh' > setup_boo
 3. Make the script executable: `chmod +x boot_verify.sh`
 
 4. Run the script in dom0: `./boot_verify.sh`
+
+###  Uninstalling Boot Verification
+
+If you wish to uninstall the boot verification setup, we provide an uninstall script to help you do so. The `UNINSTALL.sh` script will disable and remove the systemd service, remove the autostart entry for GUI users, remove the shell profile configuration for headless users, and delete the boot verification script and the `.boot_verif` directory containing the PCR value.
+
+To use the uninstall script, follow these steps:
+
+1. Download the `UNINSTALL.sh` script from the repository or copy the script content from above.
+2. Make the script executable: `chmod +x UNINSTALL.sh`
+3. Run the script: `./UNINSTALL.sh`
+
+After running the uninstall script, the boot verification setup will be removed from your system.
+

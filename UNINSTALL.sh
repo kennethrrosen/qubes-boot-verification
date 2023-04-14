@@ -2,6 +2,10 @@
 
 set -e
 
+# Remove installed packages
+echo "Removing installed packages..."
+sudo dnf remove -y tpm2-tss tpm2-tools
+
 # Remove systemd service
 echo "Removing systemd service..."
 sudo systemctl disable boot-verify.service

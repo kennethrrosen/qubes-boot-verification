@@ -8,7 +8,7 @@ sudo qubes-dom0-update tpm2-tss tpm2-tools
 
 # Create boot verification script
 echo "Creating boot verification script..."
-cat > ~/boot_verification.sh << EOL
+cat > ~/boot_verify.sh << EOL
 #!/bin/bash
 
 # Read the current PCR value
@@ -29,8 +29,8 @@ if [ -n "\$DISPLAY" ]; then
 fi
 EOL
 
-chmod +x ~/boot_verification.sh
-echo "Boot verification script created at ~/boot_verification.sh"
+chmod +x ~/boot_verify.sh
+echo "Boot verification script created at ~/boot_verify.sh"
 
 # Set up systemd service
 echo "Setting up systemd service..."
@@ -61,15 +61,11 @@ EOL
 
 # Configure shell profile for headless users
 echo "Configuring shell profile for headless users..."
-echo "~/boot_verification.sh" >> ~/.bashrc
+echo "~/boot_verify.sh" >> ~/.bashrc
 
-# Store the known good PCR value
+# Create the .boot_verif directory and store the known good PCR value
 echo "Storing the known good PCR value..."
-read -p "Enter the path to store the known good PCR value: " pcr_value_path
-sudo tpm2_pcrread sha256:0 > "$pcr_value_path"
-
-# Update the path in the boot_verification.sh script
-echo "Updating the path to the known good PCR value in the boot_verification.sh script..."
-sed -i "s|/path/to/known_good_pcr_value|$pcr_value_path|g" ~/boot_verification.sh
+mkdir -p ~/.boot_verif
+sudo tpm2_pcrread sha256:0 > ~/.boot_verif/good_pcr_value
 
 echo "Done! Boot verification setup is complete."

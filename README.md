@@ -124,18 +124,18 @@ If the issues persist, consult the Qubes OS documentation and TPM 2.0 resources 
 
 __Warning:__ This alternative method involves running a script with root privileges in dom0, which is not recommended due to potential security risks. Proceed at your own discretion. For those who prefer a more automated setup, I've provided a script that automates most of the steps described in the manual setup process. 
 
-The script automates the entire setup process, including storing the known good PCR value, creating the `~/.config/autostart/boot-verification.desktop file, and adding the '~/boot_verification.sh'` line to your .bashrc for headless users. It also includes error handling with set -e, which causes the script to exit if any command fails.
+The script automates the entire setup process, including storing the known good PCR value, creating the `~/.config/autostart/boot-verify.desktop file` and adding the `'~/boot_verify.sh'` line to your .bashrc for headless users. It also includes error handling with set -e, which causes the script to exit if any command fails.
 
 Keep in mind that using this script requires trusting the author of the script and running it in the most security-critical part of your Qubes OS system (dom0). Use this alternative option only if you understand and accept the risks involved.
 
 To use this script, follow the steps below:
 
-1. Clone this repository or download the setup_boot_verification.sh script in a Disposable VM.
+1. Clone this repository or download the boot_verify.sh script in a Disposable VM.
 
-2. Copy the setup_boot_verification.sh script from the Disposable VM to the dom0 using qvm-run:
+2. Copy the boot_verify.sh script from the Disposable VM to the dom0 using qvm-run:
 ```
-qvm-run --pass-io <Disposable_VM_name> 'cat /path/to/setup_boot_verification.sh' > setup_boot_verification.sh
+qvm-run --pass-io <Disposable_VM_name> 'cat /path/to/boot_verify.sh' > setup_boot_verification.sh
 ```
-3. Make the script executable: `chmod +x setup_boot_verification.sh`
+3. Make the script executable: `chmod +x boot_verify.sh`
 
-4. Run the script in dom0: `./setup_boot_verification.sh`
+4. Run the script in dom0: `./boot_verify.sh`

@@ -15,7 +15,7 @@ cat > ~/boot_verify.sh << EOL
 sudo tpm2_pcrread sha256:0 > /tmp/current_pcr_value
 
 # Compare the current PCR value to the known good value
-if cmp -s /tmp/current_pcr_value /path/to/known_good_pcr_value; then
+if cmp -s /tmp/current_pcr_value ~/.boot_verif/good_pcr_value; then
     echo "Boot process is unchanged." | sudo tee /etc/motd
     notify-send "Boot Verification" "Boot process is unchanged."
 else
@@ -34,29 +34,29 @@ echo "Boot verification script created at ~/boot_verify.sh"
 
 # Set up systemd service
 echo "Setting up systemd service..."
-sudo bash -c 'cat > /etc/systemd/system/boot-verification.service << EOL
+sudo bash -c 'cat > /etc/systemd/system/boot-verify.service << EOL
 [Unit]
 Description=Boot Verification
 
 [Service]
 Type=oneshot
-ExecStart=/home/user/boot_verification.sh
+ExecStart=/home/user/boot_verify.sh
 
 [Install]
 WantedBy=multi-user.target
 EOL'
 
-sudo systemctl enable boot-verification.service
+sudo systemctl enable boot-verify.service
 echo "Systemd service enabled."
 
 # Configure autostart for GUI users
 echo "Configuring autostart for GUI users..."
 mkdir -p ~/.config/autostart
-cat > ~/.config/autostart/boot-verification.desktop << EOL
+cat > ~/.config/autostart/boot-verify.desktop << EOL
 [Desktop Entry]
 Type=Application
 Name=Boot Verification
-Exec=/home/user/boot_verification.sh
+Exec=/home/user/boot_verify.sh
 EOL
 
 # Configure shell profile for headless users
@@ -67,5 +67,3 @@ echo "~/boot_verify.sh" >> ~/.bashrc
 echo "Storing the known good PCR value..."
 mkdir -p ~/.boot_verif
 sudo tpm2_pcrread sha256:0 > ~/.boot_verif/good_pcr_value
-
-echo "Done! Boot verification setup is complete."

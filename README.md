@@ -130,15 +130,15 @@ Keep in mind that using this script requires trusting the author of the script a
 
 To use this script, follow the steps below:
 
-1. Clone this repository or download the boot_verify.sh script in a Disposable VM.
+1. Clone this repository or download the INSTALL.sh script in a Disposable VM.
 
-2. Copy the boot_verify.sh script from the Disposable VM to the dom0 using qvm-run:
+2. Copy the INSTALL.sh script from the Disposable VM to the dom0 using qvm-run:
 ```
-qvm-run --pass-io <Disposable_VM_name> 'cat /path/to/boot_verify.sh' > setup_boot_verification.sh
+qvm-run --pass-io <Disposable_VM_name> 'cat /path/to/INSTALL.sh' > INSTALL.sh
 ```
-3. Make the script executable: `chmod +x boot_verify.sh`
+3. Make the script executable: `chmod +x INSTALL.sh`
 
-4. Run the script in dom0: `./boot_verify.sh`
+4. Run the script in dom0: `./INSTALL.sh`
 
 ###  Uninstalling Boot Verification
 

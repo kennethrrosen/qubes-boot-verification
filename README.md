@@ -46,7 +46,7 @@ Create a script called boot_verify.sh and add the following content:
 #!/bin/bash
 
 # Read the current PCR value
-sudo tpm2_pcrread sha256:0 > /tmp/current_pcr_value
+sudo tpm2 pcrread sha256:0 > /tmp/current_pcr_value
 
 # Compare the current PCR value to the known good value
 if cmp -s /tmp/current_pcr_value /path/to/known_good_pcr_value; then

@@ -12,7 +12,7 @@ cat > ~/boot_verify.sh << EOL
 #!/bin/bash
 
 # Read the current PCR value
-sudo tpm2_pcrread sha256:0 | sudo tee /tmp/current_pcr_value > /dev/null
+sudo tpm2 pcrread sha256:0 | sudo tee /tmp/current_pcr_value > /dev/null
 
 # Compare the current PCR value to the known good value
 if cmp -s /tmp/current_pcr_value ~/.boot_verif/good_pcr_value; then

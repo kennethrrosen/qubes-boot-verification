@@ -1,3 +1,7 @@
+### Update 14 Jan 2024
+With Trenchboot Anti-Evil-Maid now mostly stable (I'm unable to get PCRs 17,18,19 populated on TPM 2.0), I'm archiving this repo. It was a learning experience. Someone pointed out that an attacker could still mettle with the prompt alerting a user to an unmodified boot, so please take the code and this repo -- now archived -- as it is. For more info on [TrenchBoot Anti Evil Maid - Phase 3](https://blog.3mdeb.com/2024/2024-01-12-aem_phase3/), I've provided the most recent of their three blog-posts. Use the October 2023 for installation, with January 2024 post packages. Hopefully this will soon make it upstream into QubesOS 4.2
+
+
 # Boot Verification for Qubes OS with TPM 2.0
 *Tested on Lenovo T480*
 
